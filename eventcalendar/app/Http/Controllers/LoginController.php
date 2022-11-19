@@ -11,11 +11,18 @@ use Illuminate\Support\Facades\Redirect;
 class LoginController extends Controller
 {
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
     public function show()
     {
         return view('auth.login');
     }
 
+    /**
+     * @param LoginRequest $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function login(LoginRequest $request)
     {
         $credentials = $request->getCredentials();
@@ -32,7 +39,11 @@ class LoginController extends Controller
         return $this->authenticated($request, $user);
     }
 
-
+    /**
+     * @param Request $request
+     * @param $user
+     * @return \Illuminate\Http\RedirectResponse
+     */
     protected function authenticated(Request $request, $user)
     {
         return redirect()->intended();

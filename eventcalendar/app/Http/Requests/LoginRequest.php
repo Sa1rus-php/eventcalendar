@@ -30,6 +30,9 @@ class LoginRequest extends FormRequest
         ];
     }
 
+    /**
+     * @return array
+     */
     public function getCredentials()
     {
         $username = $this->get('username');
@@ -44,6 +47,11 @@ class LoginRequest extends FormRequest
         return $this->only('username', 'password');
     }
 
+    /**
+     * @param $param
+     * @return bool
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
+     */
     private function isEmail($param)
     {
         $factory = $this->container->make(ValidationFactory::class);
